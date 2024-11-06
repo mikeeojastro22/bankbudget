@@ -8,7 +8,24 @@ function Budget() {
     const [itemList, setItemList] = useState([]);
 
     const addExpense = () => {
-
+        let newPrice = Number(price);
+        if(newPrice < 0){
+            alert('Invalid Amount!');
+        } else {
+            let newBudget = budget - newPrice;
+            let newExpense = {
+                // ? - checker is itemList is already existing
+                // without ? - this will cause an error if itemList is nonexistent
+                itemId: itemList?.length,
+                itemName: expense,
+                itemPrice: newPrice
+            }
+            let newList = [...itemList, newExpense];
+            setBudget(newBudget);
+            setItemList(newList);
+        }
+        setExpense("");
+        setPrice("");
     }
 
     return (
